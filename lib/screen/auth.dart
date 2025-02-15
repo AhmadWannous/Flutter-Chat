@@ -63,7 +63,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             validator: (value) {
                               if (value == null ||
                                   value.trim().isEmpty ||
-                                  value.contains('@')) {
+                                  !value.contains('@')) {
                                 return 'Please enter a valide email address.';
                               }
                               return null;
