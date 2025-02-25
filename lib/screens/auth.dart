@@ -22,8 +22,9 @@ class _AuthScreenState extends State<AuthScreen> {
   final _form = GlobalKey<FormState>();
 
   var _isLogin = true;
-  var _entredEmail = '';
-  var _entredPassword = '';
+  var _enteredEmail = '';
+  var _enteredPassword = '';
+  var _enteredUsername = '';
   File? _selectedImage;
   var _isAuthenticating = false;
 
@@ -47,10 +48,10 @@ class _AuthScreenState extends State<AuthScreen> {
       });
       if (_isLogin) {
         final userCredentials = await _firebase.signInWithEmailAndPassword(
-            email: _entredEmail, password: _entredPassword);
+            email: _enteredEmail, password: _enteredPassword);
       } else {
         final userCredentials = await _firebase.createUserWithEmailAndPassword(
-            email: _entredEmail, password: _entredPassword);
+            email: _enteredEmail, password: _enteredPassword);
 
         final storageRef = FirebaseStorage.instance
             .ref()
@@ -64,8 +65,8 @@ class _AuthScreenState extends State<AuthScreen> {
             .collection('users')
             .doc(userCredentials.user!.uid)
             .set({
-          'username': 'to be done...',
-          'email': _entredEmail,
+          'username': _enteredUsername,
+          'email': _enteredEmail,
           'image_url': imageUrl,
         });
       }
@@ -137,9 +138,26 @@ class _AuthScreenState extends State<AuthScreen> {
                               return null;
                             },
                             onSaved: (value) {
-                              _entredEmail = value!;
+                              _enteredEmail = value!;
                             },
                           ),
+                          if (!_isLogin)
+                            TextFormField(
+                              decoration:
+                                  InputDecoration(labelText: 'Username'),
+                              enableSuggestions: false,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.isEmpty ||
+                                    value.trim().length < 4) {
+                                  return 'Please enter at last 4 characters.';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                _enteredUsername = value!;
+                              },
+                            ),
                           TextFormField(
                             decoration: const InputDecoration(
                               labelText: 'Password',
@@ -152,7 +170,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               return null;
                             },
                             onSaved: (value) {
-                              _entredPassword = value!;
+                              _enteredPassword = value!;
                             },
                           ),
                           const SizedBox(
