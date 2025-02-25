@@ -1,0 +1,2 @@
+C:/Users/Jaafar Wannous/Desktop/flutter-projects/CHAT_APP/android/app/.cxx/Debug/4p1i1v73/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Jaafar Wannous/Desktop/flutter-projects/CHAT_APP/android/app/.cxx/Debug/4p1i1v73/armeabi-v7a/CMakeFiles/rebuild_cache.dir

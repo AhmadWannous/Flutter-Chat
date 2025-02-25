@@ -17,7 +17,7 @@ class UserImagePicker extends StatefulWidget {
 class _UserImagePickerState extends State<UserImagePicker> {
   File? _pickedImageFile;
 
-  void _pickImage() async {
+  void _pickImage(ImageSource camera) async {
     final pickedImage = await ImagePicker().pickImage(
       source: ImageSource.camera,
       imageQuality: 50,
@@ -25,6 +25,21 @@ class _UserImagePickerState extends State<UserImagePicker> {
     );
 
     if (pickedImage == null) {
+      final galleryImage = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 50,
+        maxWidth: 150,
+      );
+
+      if (galleryImage == null) {
+        return;
+      }
+
+      setState(() {
+        _pickedImageFile = File(galleryImage.path);
+      });
+
+      widget.onPickImage(_pickedImageFile!);
       return;
     }
 
@@ -46,10 +61,20 @@ class _UserImagePickerState extends State<UserImagePicker> {
               _pickedImageFile != null ? FileImage(_pickedImageFile!) : null,
         ),
         TextButton.icon(
-          onPressed: _pickImage,
+          onPressed: () => _pickImage(ImageSource.camera),
           icon: const Icon(Icons.image),
           label: Text(
             'Add Image',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        ),
+        TextButton.icon(
+          onPressed: () => _pickImage(ImageSource.gallery),
+          icon: const Icon(Icons.storage_outlined),
+          label: Text(
+            'Add Image From Gallery',
             style: TextStyle(
               color: Theme.of(context).colorScheme.primary,
             ),
