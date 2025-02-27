@@ -25,23 +25,27 @@ class _UserImagePickerState extends State<UserImagePicker> {
     );
 
     if (pickedImage == null) {
-      final galleryImage = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-        imageQuality: 50,
-        maxWidth: 150,
-      );
-
-      if (galleryImage == null) {
-        return;
-      }
-
-      setState(() {
-        _pickedImageFile = File(galleryImage.path);
-      });
-
-      widget.onPickImage(_pickedImageFile!);
       return;
     }
+
+    // if (pickedImage == null) {
+    //   final galleryImage = await ImagePicker().pickImage(
+    //     source: ImageSource.gallery,
+    //     imageQuality: 50,
+    //     maxWidth: 150,
+    //   );
+
+    // if (galleryImage == null) {
+    //   return;
+    // }
+
+    // setState(() {
+    //   _pickedImageFile = File(galleryImage.path);
+    // });
+
+    //   widget.onPickImage(_pickedImageFile!);
+    //   return;
+    // }
 
     setState(() {
       _pickedImageFile = File(pickedImage.path);
@@ -70,16 +74,16 @@ class _UserImagePickerState extends State<UserImagePicker> {
             ),
           ),
         ),
-        TextButton.icon(
-          onPressed: () => _pickImage(ImageSource.gallery),
-          icon: const Icon(Icons.storage_outlined),
-          label: Text(
-            'Add Image From Gallery',
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          ),
-        ),
+        // TextButton.icon(
+        //   onPressed: () => _pickImage(ImageSource.gallery),
+        //   icon: const Icon(Icons.storage_outlined),
+        //   label: Text(
+        //     'Add Image From Gallery',
+        //     style: TextStyle(
+        //       color: Theme.of(context).colorScheme.primary,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
