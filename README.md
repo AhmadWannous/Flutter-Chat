@@ -26,3 +26,23 @@ Image Picker – Allows users to select images from the gallery or camera.
 The app is designed for anyone who needs a fast, secure, and reliable chat platform, whether for personal conversations, team communication, or small community interactions.
 
 🔹 Flutter Chat is a powerful and user-friendly messaging app that showcases the capabilities of Firebase in modern chat applications. 🚀
+
+## 📸 App Screenshots
+
+<table>
+  <tr>
+    <td><b>Home</b></td>
+    <td><b>Error</b></td>
+    <td><b>Signup</b></td>
+    <td><b>Error Signup</b></td>
+    <td><b>Chat</b></td>
+  </tr>
+  
+  <tr>
+    <td><img src="assets/screenshots/home.png" width="200"></td>
+    <td><img src="assets/screenshots/error.png" width="200"></td>
+    <td><img src="assets/screenshots/signup.png" width="200"></td>
+    <td><img src="assets/screenshots/error signup.png" width="200"></td>
+    <td><img src="assets/screenshots/chat.png" width="200"></td>
+  </tr>
+</table>
